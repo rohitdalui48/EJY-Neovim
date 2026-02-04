@@ -31,8 +31,13 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.foldmethod = expr
 vim.opt.foldenable = false
 
+-- Search Settings
 vim.opt.ignorecase = true
 
+-- Backup Bullshit
+vim.opt.backup = false -- Don't create backup files
+vim.opt.writebackup = false -- Don't backup before overwriting
+vim.opt.swapfile = false
 -- Keymaps
 
 -- Leader Key
@@ -787,7 +792,7 @@ require("lazy").setup({
 						documentation = cmp.config.window.bordered(),
 					},
 					mapping = cmp.mapping.preset.insert({
-						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+						["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					}),
 					sources = cmp.config.sources({
 						{ name = "nvim_lsp" },
@@ -822,7 +827,7 @@ require("lazy").setup({
 						cpp = { "astyle" },
 					},
 				})
-				vim.keymap.set("n", "<leader>f", conform.format, {})
+				vim.keymap.set("n", "<leader>F", conform.format, {})
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					pattern = "*",
 					callback = function(args)
@@ -861,6 +866,15 @@ require("lazy").setup({
 				vim.diagnostic.config({
 					virtual_text = true,
 				})
+			end,
+		},
+
+		-- mini.ai
+		{
+			"nvim-mini/mini.nvim",
+			version = false,
+			config = function()
+				require("mini.ai").setup()
 			end,
 		},
 	},
