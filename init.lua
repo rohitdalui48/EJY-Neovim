@@ -45,28 +45,28 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Saving File
-vim.keymap.set("n", "<leader>w", ":w<CR>", {})
-vim.keymap.set("n", "<leader>q", ":q<CR>", {})
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write File" })
+vim.keymap.set("n", "<leader>q", ":qw<CR>", { desc = "Write and Quit File" })
 
 -- Splits
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", {})
-vim.keymap.set("n", "<leader>sh", ":split<CR>", {})
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split vertically" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split Horizontally" })
 
 -- Split Focus
-vim.keymap.set("n", "<C-h>", "<C-w>h", {})
-vim.keymap.set("n", "<C-j>", "<C-w>j", {})
-vim.keymap.set("n", "<C-k>", "<C-w>k", {})
-vim.keymap.set("n", "<C-l>", "<C-w>l", {})
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus Left Pane" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus Above Pane" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus Bottom Pane" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus Right Pane" })
 
 -- Split Resizing
-vim.keymap.set("n", "<C-Left>", "<C-W><", {})
-vim.keymap.set("n", "<C-Down>", "<C-W>-", {})
-vim.keymap.set("n", "<C-Up>", "<C-W>+", {})
-vim.keymap.set("n", "<C-Right>", "<C-W>>", {})
+vim.keymap.set("n", "<C-Left>", "<C-W><", { desc = "Increase Width" })
+vim.keymap.set("n", "<C-Down>", "<C-W>-", { desc = "Decrease Width" })
+vim.keymap.set("n", "<C-Up>", "<C-W>+", { desc = "Increase Height" })
+vim.keymap.set("n", "<C-Right>", "<C-W>>", { desc = "Decrease Height" })
 
 -- buffers
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", {})
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", {})
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous Buffer" })
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next Buffer" })
 
 --Plugins
 
@@ -155,7 +155,7 @@ require("lazy").setup({
 			keys = {
 				-- Top Pickers & Explorer
 				{
-					"<leader><space>",
+					"<leader><leader>",
 					function()
 						Snacks.picker.smart()
 					end,
@@ -498,69 +498,69 @@ require("lazy").setup({
 				},
 				-- LSP
 				{
-					"gd",
+					"<leader>gd",
 					function()
 						Snacks.picker.lsp_definitions()
 					end,
 					desc = "Goto Definition",
 				},
 				{
-					"gD",
+					"<leader>gD",
 					function()
 						Snacks.picker.lsp_declarations()
 					end,
 					desc = "Goto Declaration",
 				},
 				{
-					"gr",
+					"<leader>gr",
 					function()
 						Snacks.picker.lsp_references()
 					end,
 					nowait = true,
 					desc = "References",
 				},
-				{
-					"gI",
-					function()
-						Snacks.picker.lsp_implementations()
-					end,
-					desc = "Goto Implementation",
-				},
-				{
-					"gy",
-					function()
-						Snacks.picker.lsp_type_definitions()
-					end,
-					desc = "Goto T[y]pe Definition",
-				},
-				{
-					"gai",
-					function()
-						Snacks.picker.lsp_incoming_calls()
-					end,
-					desc = "C[a]lls Incoming",
-				},
-				{
-					"gao",
-					function()
-						Snacks.picker.lsp_outgoing_calls()
-					end,
-					desc = "C[a]lls Outgoing",
-				},
-				{
-					"<leader>ss",
-					function()
-						Snacks.picker.lsp_symbols()
-					end,
-					desc = "LSP Symbols",
-				},
-				{
-					"<leader>ws",
-					function()
-						Snacks.picker.lsp_workspace_symbols()
-					end,
-					desc = "LSP Workspace Symbols",
-				},
+				-- {
+				-- 	"gI",
+				-- 	function()
+				-- 		Snacks.picker.lsp_implementations()
+				-- 	end,
+				-- 	desc = "Goto Implementation",
+				-- },
+				-- {
+				-- 	"gy",
+				-- 	function()
+				-- 		Snacks.picker.lsp_type_definitions()
+				-- 	end,
+				-- 	desc = "Goto T[y]pe Definition",
+				-- },
+				-- {
+				-- 	"gai",
+				-- 	function()
+				-- 		Snacks.picker.lsp_incoming_calls()
+				-- 	end,
+				-- 	desc = "C[a]lls Incoming",
+				-- },
+				-- {
+				-- 	"gao",
+				-- 	function()
+				-- 		Snacks.picker.lsp_outgoing_calls()
+				-- 	end,
+				-- 	desc = "C[a]lls Outgoing",
+				-- },
+				-- {
+				-- 	"<leader>ss",
+				-- 	function()
+				-- 		Snacks.picker.lsp_symbols()
+				-- 	end,
+				-- 	desc = "LSP Symbols",
+				-- },
+				-- {
+				-- 	"<leader>ws",
+				-- 	function()
+				-- 		Snacks.picker.lsp_workspace_symbols()
+				-- 	end,
+				-- 	desc = "LSP Workspace Symbols",
+				-- },
 				-- Other
 				{
 					"<leader>z",
@@ -632,20 +632,6 @@ require("lazy").setup({
 						Snacks.notifier.hide()
 					end,
 					desc = "Dismiss All Notifications",
-				},
-				{
-					"<c-/>",
-					function()
-						Snacks.terminal()
-					end,
-					desc = "Toggle Terminal",
-				},
-				{
-					"<c-_>",
-					function()
-						Snacks.terminal()
-					end,
-					desc = "which_key_ignore",
 				},
 				{
 					"]]",
@@ -761,7 +747,8 @@ require("lazy").setup({
 					"lua_ls",
 					"clangd",
 				})
-				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
+				vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, { desc = "Global Rename" })
 			end,
 		},
 
@@ -823,8 +810,8 @@ require("lazy").setup({
 				conform.setup({
 					formatters_by_ft = {
 						lua = { "stylua" },
-						c = { "astyle" },
-						cpp = { "astyle" },
+						c = { "clang-format" },
+						cpp = { "clang-format" },
 					},
 				})
 				vim.keymap.set("n", "<leader>F", conform.format, {})
@@ -855,9 +842,6 @@ require("lazy").setup({
 				vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 					group = lint_augroup,
 					callback = function()
-						-- Only run the linter in buffers that you can modify in order to
-						-- avoid superfluous noise, notably within the handy LSP pop-ups that
-						-- describe the hovered symbol using Markdown.
 						if vim.bo.modifiable then
 							lint.try_lint()
 						end
@@ -875,6 +859,15 @@ require("lazy").setup({
 			version = false,
 			config = function()
 				require("mini.ai").setup()
+			end,
+		},
+
+		-- mini.sa
+		{
+			"nvim-mini/mini.surround",
+			version = false,
+			config = function()
+				require("mini.surround").setup()
 			end,
 		},
 	},
