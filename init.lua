@@ -47,6 +47,7 @@ vim.g.maplocalleader = " "
 -- Saving File
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write File" })
 vim.keymap.set("n", "<leader>q", ":qw<CR>", { desc = "Write and Quit File" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit File" })
 
 -- Splits
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split vertically" })
@@ -704,6 +705,7 @@ require("lazy").setup({
 					"cpp",
 					"java",
 					"python",
+					"markdown",
 				})
 				vim.api.nvim_create_autocmd("FileType", {
 					pattern = {
@@ -711,6 +713,7 @@ require("lazy").setup({
 						"cpp",
 						"lua",
 						"java",
+						"md",
 						"py",
 					},
 					callback = function()
@@ -743,9 +746,17 @@ require("lazy").setup({
 					filetypes = { "c", "cpp" },
 					capabilities = capabilities,
 				}
+
+				--marksman for markdown
+				vim.lsp.config["marksman"] = {
+					cmd = { "marksman" },
+					filetypes = { "md" },
+					capabilities = capabilities,
+				}
 				vim.lsp.enable({
 					"lua_ls",
 					"clangd",
+					"marksman",
 				})
 				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 				vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename, { desc = "Global Rename" })
@@ -812,6 +823,7 @@ require("lazy").setup({
 						lua = { "stylua" },
 						c = { "clang-format" },
 						cpp = { "clang-format" },
+						md = { "mdformat" },
 					},
 				})
 				vim.keymap.set("n", "<leader>F", conform.format, {})
@@ -851,6 +863,30 @@ require("lazy").setup({
 					virtual_text = true,
 				})
 			end,
+		},
+
+		--markdown
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+			---@module 'render-markdown'
+			---@type render.md.UserConfig
+			opts = {},
+			config = function()
+				require("render-markdown").setup({
+					render_modes = { "n", "c", "t" },
+					completions = { lsp = { enabled = true } },
+				})
+			end,
+		},
+		{
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			build = "cd app && yarn install",
+			init = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = { "markdown" },
 		},
 
 		-- mini.ai
