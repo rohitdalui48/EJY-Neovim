@@ -28,16 +28,14 @@ return {
 		end,
 	},
 
-	--mini-files
+	--telescope-files
 	{
-		"nvim-mini/mini.files",
-		version = "*",
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
-			require("mini.files").setup()
-			vim.keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", { silent = true })
+			require("telescope").load_extension("file_browser")
 		end,
 	},
-
 	-- Float-term
 	{
 		"nvzone/floaterm",

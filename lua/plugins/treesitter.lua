@@ -3,27 +3,33 @@ return {
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").install({
-			"c",
+		languages = {
+			--Coding
 			"lua",
+			"c",
 			"cpp",
-			"java",
 			"python",
-			"markdown",
+			-- Web Development
+			"html",
+			"html_tags",
+			"htmldjango",
+			"css",
+			"javascript",
+		}
+		fileTypes = {
+			--Coding
+			"lua",
+			"c",
+			"cpp",
+			"python",
+			--Web Development
 			"html",
 			"css",
-		})
+			"javascript",
+		}
+		require("nvim-treesitter").install(languages)
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {
-				"c",
-				"cpp",
-				"lua",
-				"java",
-				"md",
-				"py",
-				"html",
-				"css",
-			},
+			pattern = fileTypes,
 			callback = function()
 				vim.treesitter.start()
 				vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"

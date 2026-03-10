@@ -29,3 +29,6 @@ vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next Buffer" })
 
 -- terminal
 vim.keymap.set("n", "<leader>tt", "<cmd>FloatermToggle<CR>", { silent = true })
+
+--file explorer
+vim.keymap.set("n", "<space>e", ":Telescope file_browser<CR>")

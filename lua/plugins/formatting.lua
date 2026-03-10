@@ -5,11 +5,14 @@ return {
 		local conform = require("conform")
 		conform.setup({
 			formatters_by_ft = {
+				--coding
 				lua = { "stylua" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-				md = { "mdformat" },
 				python = { "black" },
+				--notes
+				md = { "mdformat" },
+				--web-dev
 				html = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettier" },
