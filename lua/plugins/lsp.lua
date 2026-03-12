@@ -19,6 +19,11 @@ return {
 			filetypes = { "python" },
 			capabilities = capabilities,
 		}
+		vim.lsp.config["bash-language-server"] = {
+			cmd = { "bash-language-server", "start" },
+			filetypes = { "bash", "sh", "zsh" },
+			capabilities = capabilities,
+		}
 		--notes
 		vim.lsp.config["marksman"] = {
 			cmd = { "marksman" },
@@ -57,6 +62,7 @@ return {
 			"emmet-language-server",
 			"vscode-css-language-server",
 			"typescript-language-server",
+			"bash-language-server",
 		})
 
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })

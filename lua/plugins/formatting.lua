@@ -10,6 +10,7 @@ return {
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				python = { "black" },
+				bash = { "beautysh" },
 				--notes
 				md = { "mdformat" },
 				--web-dev

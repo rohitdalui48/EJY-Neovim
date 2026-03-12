@@ -14,6 +14,7 @@ return {
 			--Web-Development
 			html = { "htmlhint", "stylelint" },
 			css = { "stylelint" },
+			javascript = { "jshint" },
 		}
 
 		lint.linters.cpplint.args = {

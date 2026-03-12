@@ -9,6 +9,7 @@ return {
 			"c",
 			"cpp",
 			"python",
+			"bash",
 			-- Web Development
 			"html",
 			"html_tags",
